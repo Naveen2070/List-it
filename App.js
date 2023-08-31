@@ -1,11 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
+  const handlepress = () => {
+    window.alert('hi');
+  };
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <View>
+        <Text style={{ color: 'red', fontSize: 20 }}>HI Stranger</Text>
+      </View>
+      <Text>Hello World</Text>
+      <Button title="Click Me" onPress={handlepress} />
     </View>
   );
 }
