@@ -1,10 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import TaskItem from './TaskItem';
 import styles from './Styles/Styles';
 
-const TaskList = ({ taskList }) => {
+const TaskList = ({ taskList, setTaskList }) => {
   const [completedTasks, setCompletedTasks] = useState(new Set());
+
+  useEffect(() => {
+    // Function to delete a completed task after 20 seconds
+    const deleteCompletedTaskAfterTimeout = (taskId) => {
+      setTimeout(() => {
+        const updatedCompletedTasks = new Set(completedTasks);
+        updatedCompletedTasks.delete(taskId);
+        setCompletedTasks(updatedCompletedTasks);
+
+        // Remove the completed task from the taskList
+        const updatedTaskList = taskList.filter((task) => task.key !== taskId);
+        setTaskList(updatedTaskList);
+      }, 300);
+    };
+
+    // Monitor completedTasks for changes and set timers for completed tasks
+    completedTasks.forEach((taskId) => {
+      deleteCompletedTaskAfterTimeout(taskId);
+    });
+  }, [completedTasks, taskList, setTaskList]);
 
   const toggleTaskCompletion = (taskId) => {
     const updatedCompletedTasks = new Set(completedTasks);
@@ -29,9 +49,7 @@ const TaskList = ({ taskList }) => {
   return (
     <View style={styles.taskContainer}>
       {taskList.length === 0 ? (
-        <View style={styles.goalItem}>
-          <Text style={styles.goalText}>Add your tasks...</Text>
-        </View>
+        <View style={styles.goalItem}></View>
       ) : (
         <FlatList
           data={taskList}

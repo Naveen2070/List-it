@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, Button, TextInput } from 'react-native';
+import { View, Button, TextInput, Modal, Image } from 'react-native';
 import styles from './Styles/Styles';
 
-const TaskInput = ({ onAddTask }) => {
+const TaskInput = ({ onAddTask, startModel, close }) => {
   const [task, setTask] = useState('');
 
   const inputHandler = (textInput) => {
@@ -17,16 +17,30 @@ const TaskInput = ({ onAddTask }) => {
   };
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.textInput}
-        placeholderTextColor="white"
-        placeholder="Your Task!"
-        value={task}
-        onChangeText={inputHandler}
-      />
-      <Button title="Add Task" onPress={addTask} />
-    </View>
+    <Modal visible={startModel} animationType="slide" transparent={false}>
+      <View style={styles.inputContainer}>
+        <Image
+          resizeMode="contain"
+          source={require('../assets/Images/task.png')}
+          style={styles.image}
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholderTextColor="white"
+          placeholder="Your Task!"
+          value={task}
+          onChangeText={inputHandler}
+        />
+        <View style={styles.buttonContainer}>
+          <View style={styles.button}>
+            <Button title="Add Task" onPress={addTask} color="green" />
+          </View>
+          <View style={styles.button}>
+            <Button title="Close" onPress={close} color="red" />
+          </View>
+        </View>
+      </View>
+    </Modal>
   );
 };
 

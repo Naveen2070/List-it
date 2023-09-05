@@ -5,23 +5,23 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
-    backgroundColor: '#111',
+    backgroundColor: '#000000',
   },
 
   inputContainer: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#cccc',
+    padding: 20,
+    backgroundColor: '#111',
   },
 
   textInput: {
     borderWidth: 1,
     borderColor: '#cccc',
-    width: '70%',
+    borderRadius: 8,
+    backgroundColor: '#F3F3F379',
+    width: '100%',
     marginRight: 8,
     padding: 8,
     color: 'white',
@@ -33,19 +33,39 @@ const styles = StyleSheet.create({
 
   goalItem: {
     margin: 8,
-    padding: 8,
     borderRadius: 6,
-    backgroundColor: 'blue',
+    backgroundColor: '#00FF1A',
   },
 
   goalText: {
     fontSize: 15,
-    color: 'white',
+    padding: 8,
   },
 
   completedTask: {
     textDecorationLine: 'line-through',
     color: 'black',
+  },
+
+  centeredContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  buttonContainer: {
+    marginTop: 30,
+    flexDirection: 'row',
+  },
+
+  button: {
+    width: 100,
+    marginHorizontal: 8,
+  },
+
+  image: {
+    width: 200,
+    height: 200,
   },
 });
 
